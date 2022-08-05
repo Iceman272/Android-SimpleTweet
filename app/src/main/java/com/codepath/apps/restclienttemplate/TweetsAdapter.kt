@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codepath.apps.restclienttemplate.models.Tweet
@@ -31,6 +32,8 @@ class TweetsAdapter(val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsA
 
         holder.tvPostTime.text = getFormattedTimestamp(tweet.createdAt)
 
+        //holder.ivVerified.isVisible = tweet.user?.verifiedStatus!!
+
 
         Glide.with(holder.itemView).load(tweet.user?.publicImageURL).into(holder.ivProfileImage)
     }
@@ -55,6 +58,7 @@ class TweetsAdapter(val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsA
         val tvUsername = itemView.findViewById<TextView>(R.id.tvUsername)
         val tvTweetBody = itemView.findViewById<TextView>(R.id.tvTweetBody)
         val tvPostTime = itemView.findViewById<TextView>(R.id.tvPostTime)
+        //val ivVerified = itemView.findViewById<TextView>(R.id.ivVerified)
     }
 
     fun getFormattedTimestamp(createdAt: String): String? {

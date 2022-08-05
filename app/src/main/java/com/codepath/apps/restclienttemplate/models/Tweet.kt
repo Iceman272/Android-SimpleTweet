@@ -6,6 +6,7 @@ import org.json.JSONObject
 class Tweet {
     var body: String = ""
     var createdAt: String = ""
+    //var verifiedStatus: Boolean = false
     var user: User? = null
 
     companion object{
@@ -14,6 +15,8 @@ class Tweet {
             tweet.body = jsonObject.getString("text")
             tweet.createdAt = jsonObject.getString("created_at")
             tweet.user = User.fromJson(jsonObject.getJSONObject("user"))
+            //tweet.verifiedStatus = jsonObject.getBoolean("verified")
+
             return  tweet
         }
 
