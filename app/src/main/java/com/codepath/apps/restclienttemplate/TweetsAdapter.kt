@@ -12,6 +12,7 @@ import com.codepath.apps.restclienttemplate.models.Tweet
 import java.lang.reflect.Type
 import java.text.FieldPosition
 
+
 class TweetsAdapter(val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
         val context = parent.context
@@ -26,6 +27,9 @@ class TweetsAdapter(val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsA
 
         holder.tvUsername.text = tweet.user?.name
         holder.tvTweetBody.text = tweet.body
+
+
+        holder.tvPostTime.text = getFormattedTimestamp(tweet.createdAt)
 
 
         Glide.with(holder.itemView).load(tweet.user?.publicImageURL).into(holder.ivProfileImage)
@@ -50,7 +54,11 @@ class TweetsAdapter(val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsA
         val ivProfileImage = itemView.findViewById<ImageView>(R.id.ivProfileImage)
         val tvUsername = itemView.findViewById<TextView>(R.id.tvUsername)
         val tvTweetBody = itemView.findViewById<TextView>(R.id.tvTweetBody)
-        
+        val tvPostTime = itemView.findViewById<TextView>(R.id.tvPostTime)
+    }
+
+    fun getFormattedTimestamp(createdAt: String): String? {
+        return TimeFormatter.getTimeDifference(createdAt)
     }
 
 }
