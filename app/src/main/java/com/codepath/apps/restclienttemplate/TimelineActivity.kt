@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,11 +26,17 @@ class TimelineActivity : AppCompatActivity() {
 
     lateinit var adapter: TweetsAdapter
 
+    lateinit var searchInfo: EditText
+
+
     val tweets = ArrayList<Tweet>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeline)
+
+        //searchInfo = findViewById(R.menu.menu_main).findViewById(R.id.search_bar)
+        //searchInfo = menu.findViewById(R.id.search_bar)
 
         swipeContainer = findViewById(R.id.swipeContainer)
 
@@ -68,6 +75,10 @@ class TimelineActivity : AppCompatActivity() {
         if(item.itemId == R.id.compose){
             val intent = Intent(this, ComposeActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE)
+        }else if(item.itemId == R.id.search_bar){
+            //searchInfo.text = item.itemId.toString()
+            //val search = item.
+            Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
